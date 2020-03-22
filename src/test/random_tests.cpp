@@ -1,10 +1,10 @@
-// Copyright (c) 2017 The Bitcoin Core developers
+// Copyright (c) 2017 The Testcoin Core developers
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
 #include "random.h"
 
-#include "test/test_bitcoin.h"
+#include "test/test_testcoin.h"
 
 #include <boost/test/unit_test.hpp>
 

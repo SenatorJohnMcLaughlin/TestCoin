@@ -1,0 +1,33 @@
+# /etc/conf.d/testcoind: config file for /etc/init.d/testcoind
+
+# Config file location
+#TESTCOIND_CONFIGFILE="/etc/testcoin/testcoin.conf"
+
+# What directory to write pidfile to?  (created and owned by $TESTCOIND_USER)
+#TESTCOIND_PIDDIR="/var/run/testcoind"
+
+# What filename to give the pidfile
+#TESTCOIND_PIDFILE="${TESTCOIND_PIDDIR}/testcoind.pid"
+
+# Where to write testcoind data (be mindful that the blockchain is large)
+#TESTCOIND_DATADIR="/var/lib/testcoind"
+
+# User and group to own testcoind process
+#TESTCOIND_USER="testcoin"
+#TESTCOIND_GROUP="testcoin"
+
+# Path to testcoind executable
+#TESTCOIND_BIN="/usr/bin/testcoind"
+
+# Nice value to run testcoind under
+#TESTCOIND_NICE=0
+
+# Additional options (avoid -conf and -datadir, use flags above)
+#TESTCOIND_OPTS=""
+
+# The timeout in seconds OpenRC will wait for testcoind to terminate
+# after a SIGTERM has been raised.
+# Note that this will be mapped as argument to start-stop-daemon's
+# '--retry' option, which means you can specify a retry schedule
+# here. For more information see man 8 start-stop-daemon.
+TESTCOIND_SIGTERM_TIMEOUT=60

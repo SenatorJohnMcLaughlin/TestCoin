@@ -1,0 +1,81 @@
+policy_module(testcoin, 1.100.1)
+
+########################################
+#
+# Declarations
+#
+
+type testcoin_t;
+type testcoin_exec_t;
+init_daemon_domain(testcoin_t, testcoin_exec_t)
+
+permissive testcoin_t;
+
+type testcoin_initrc_exec_t;
+init_script_file(testcoin_initrc_exec_t)
+
+type testcoin_conf_t;
+files_type(testcoin_conf_t)
+
+type testcoin_var_lib_t;
+files_type(testcoin_var_lib_t)
+
+type testcoin_var_run_t;
+files_type(testcoin_var_run_t)
+
+type testcoin_port_t;
+corenet_port(testcoin_port_t)
+
+########################################
+#
+# testcoin local policy
+#
+allow testcoin_t self:process { fork };
+
+allow testcoin_t self:fifo_file rw_fifo_file_perms;
+allow testcoin_t self:unix_stream_socket create_stream_socket_perms;
+
+manage_dirs_pattern(testcoin_t, testcoin_conf_t, testcoin_conf_t)
+manage_files_pattern(testcoin_t, testcoin_conf_t, testcoin_conf_t)
+
+manage_dirs_pattern(testcoin_t, testcoin_var_lib_t, testcoin_var_lib_t)
+manage_files_pattern(testcoin_t, testcoin_var_lib_t, testcoin_var_lib_t)
+files_var_lib_filetrans(testcoin_t, testcoin_var_lib_t, { dir file })
+
+manage_dirs_pattern(testcoin_t, testcoin_var_run_t, testcoin_var_run_t)
+manage_files_pattern(testcoin_t, testcoin_var_run_t, testcoin_var_run_t)
+
+sysnet_dns_name_resolve(testcoin_t)
+corenet_all_recvfrom_unlabeled(testcoin_t)
+
+allow testcoin_t self:tcp_socket create_stream_socket_perms;
+corenet_tcp_sendrecv_generic_if(testcoin_t)
+corenet_tcp_sendrecv_generic_node(testcoin_t)
+corenet_tcp_sendrecv_all_ports(testcoin_t)
+corenet_tcp_bind_generic_node(testcoin_t)
+
+gen_require(`
+    type testcoin_port_t;
+')
+allow testcoin_t testcoin_port_t:tcp_socket name_bind;
+
+gen_require(`
+    type testcoin_port_t;
+')
+allow testcoin_t testcoin_port_t:tcp_socket name_connect;
+
+domain_use_interactive_fds(testcoin_t)
+
+files_read_etc_files(testcoin_t)
+
+miscfiles_read_localization(testcoin_t)
+
+sysnet_dns_name_resolve(testcoin_t)
+
+allow testcoin_t testcoin_exec_t:file execute_no_trans;
+allow testcoin_t self:process setsched;
+corecmd_exec_ls(testcoin_t)
+corenet_tcp_connect_http_port(testcoin_t)
+dev_read_urand(testcoin_t)
+fs_getattr_xattr_fs(testcoin_t)
+kernel_read_system_state(testcoin_t)

@@ -1,0 +1,2 @@
+contrib/testcoind.bash-completion	testcoind
+contrib/testcoin-cli.bash-completion	testcoin-cli

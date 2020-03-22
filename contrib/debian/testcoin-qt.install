@@ -1,0 +1,6 @@
+usr/local/bin/testcoin-qt usr/bin
+share/pixmaps/testcoin32.xpm usr/share/pixmaps
+share/pixmaps/testcoin16.xpm usr/share/pixmaps
+share/pixmaps/testcoin128.png usr/share/pixmaps
+debian/testcoin-qt.desktop usr/share/applications
+debian/testcoin-qt.protocol usr/share/kde4/services/

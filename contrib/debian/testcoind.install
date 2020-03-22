@@ -1,0 +1,2 @@
+usr/local/bin/testcoind usr/bin
+usr/local/bin/testcoin-cli usr/bin
